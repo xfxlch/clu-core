@@ -4,9 +4,7 @@
 package com.clu.spring;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 import com.clu.spring.config.DataBaseConfig;
@@ -16,10 +14,11 @@ import com.clu.spring.config.DataBaseConfig;
  *
  */
 
-@ComponentScan
-@Configuration
-@EnableAutoConfiguration
+//@ComponentScan
+//@Configuration
+//@EnableAutoConfiguration(exclude={TwitterAutoConfiguration.class})
 @Import(DataBaseConfig.class)
+@SpringBootApplication
 public class CluCoreApplication {
 
 	/**

@@ -45,7 +45,7 @@ public class DataBaseConfig {
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactoryBean.setPackagesToScan(packagesToScan);
-        entityManagerFactoryBean.setPersistenceUnitName("fcmcore");
+        entityManagerFactoryBean.setPersistenceUnitName("clucore");
         return entityManagerFactoryBean;
     }
 
