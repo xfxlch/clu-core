@@ -3,7 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.clu.spring</groupId>
 	<artifactId>clu-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${clu.core.version}</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<clu.core.version>0.0.1-SNAPSHOT</clu.core.version>
+	</properties>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -33,9 +38,50 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.10</version>
+				<configuration>
+					<!-- set alternative assemble directory -->
+					<assembleDirectory>${project.build.directory}/clu-core-${clu.core.version}</assembleDirectory>
+					<repositoryLayout>flat</repositoryLayout>
+					<!-- Extra JVM arguments that will be included in the bin scripts -->
+					<extraJvmArguments>-Xms128m</extraJvmArguments>
+					<!-- Generate bin scripts for windows and unix pr default -->
+					<platforms>
+						<platform>windows</platform>
+						<platform>unix</platform>
+					</platforms>
+					<binFileExtensions>
+						<unix>.sh</unix>
+					</binFileExtensions>
+					<programs>
+						<program>
+							<id>devHelloService</id>
+							<mainClass>com.clu.spring.CluCoreApplication</mainClass>
+							<!-- Only generate windows bat script for this application -->
+							<platforms>
+								<platform>windows</platform>
+							</platforms>
+						</program>
+					</programs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
